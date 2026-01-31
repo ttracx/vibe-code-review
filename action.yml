@@ -1,0 +1,73 @@
+name: 'Vibe Code Review'
+description: 'AI-powered code review for pull requests using OpenAI or Anthropic'
+author: 'ttracx'
+branding:
+  icon: 'eye'
+  color: 'purple'
+
+inputs:
+  github_token:
+    description: 'GitHub token for API access'
+    required: true
+    default: ${{ github.token }}
+  
+  provider:
+    description: 'AI provider to use (openai or anthropic)'
+    required: false
+    default: 'openai'
+  
+  api_key:
+    description: 'API key for the AI provider (OpenAI or Anthropic)'
+    required: true
+  
+  model:
+    description: 'Model to use for review'
+    required: false
+    default: 'gpt-4o-mini'
+  
+  review_level:
+    description: 'Review thoroughness: quick, standard, or comprehensive'
+    required: false
+    default: 'standard'
+  
+  include_patterns:
+    description: 'File patterns to include (comma-separated globs)'
+    required: false
+    default: '**/*.ts,**/*.js,**/*.py,**/*.go,**/*.rs,**/*.java,**/*.tsx,**/*.jsx'
+  
+  exclude_patterns:
+    description: 'File patterns to exclude (comma-separated globs)'
+    required: false
+    default: '**/node_modules/**,**/dist/**,**/*.min.js,**/package-lock.json,**/yarn.lock'
+  
+  max_files:
+    description: 'Maximum number of files to review'
+    required: false
+    default: '10'
+  
+  language:
+    description: 'Language for review comments'
+    required: false
+    default: 'english'
+  
+  custom_prompt:
+    description: 'Custom instructions to append to the review prompt'
+    required: false
+    default: ''
+  
+  fail_on_issues:
+    description: 'Fail the action if critical issues are found'
+    required: false
+    default: 'false'
+
+outputs:
+  review_summary:
+    description: 'Summary of the code review'
+  issues_found:
+    description: 'Number of issues found'
+  files_reviewed:
+    description: 'Number of files reviewed'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
