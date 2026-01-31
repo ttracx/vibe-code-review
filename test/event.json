@@ -1,0 +1,19 @@
+{
+  "action": "opened",
+  "number": 1,
+  "pull_request": {
+    "number": 1,
+    "head": {
+      "sha": "abc123"
+    },
+    "base": {
+      "sha": "def456"
+    }
+  },
+  "repository": {
+    "name": "test-repo",
+    "owner": {
+      "login": "ttracx"
+    }
+  }
+}
